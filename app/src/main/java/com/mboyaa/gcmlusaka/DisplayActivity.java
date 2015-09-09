@@ -20,7 +20,6 @@ import java.util.HashMap;
 
 import static com.mboyaa.gcmlusaka.CommonUtilities.displayMessage;
 
-
 public class DisplayActivity extends ActionBarActivity {
 
     static final String KEY_SONG = "song"; // parent node
@@ -46,8 +45,7 @@ public class DisplayActivity extends ActionBarActivity {
         Intent iA = getIntent();
         com_id = iA.getStringExtra("com_id");
        // description = iA.getStringExtra("description");
-        GCMUtillityClass iconChanger = new GCMUtillityClass();
-        iconChanger.iconUpdate(com_id);
+        iconUpdate(com_id);
         populateMessages(com_id);
 
         // Click event for single list row
@@ -72,6 +70,45 @@ public class DisplayActivity extends ActionBarActivity {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void iconUpdate(String name){
+        if (name.equals("ZESCO")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.zesco);
+        } else if (name.equals("ZCAS")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.zcas_logo);
+        } else if (name.equals("UNZA")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.unzalogo);
+        } else if (name.equals("LCC")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.lcc);
+        }else if (name.equals("LWSC")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.lwsc);
+        }else if (name.equals("POLICE")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.police);
+        }else if (name.equals("BONGOHIVE")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.hive);
+        }else if (name.equals("BLOOD BANK")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.znbts);
+        }else if (name.equals("PARLIAMENT")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.zambia);
+        }else if (name.equals("FAZ")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.faz);
+        }else if (name.equals("CBU")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.cbu);
+        }else {
+            getSupportActionBar().setIcon(R.drawable.no_image);
+        }
+    }
 
     public void populateMessages(String com_id){
         db = new DatabaseHandler(getApplicationContext());
@@ -127,8 +164,7 @@ public class DisplayActivity extends ActionBarActivity {
         com_id = iA.getStringExtra("com_id");
         //description = iA.getStringExtra("description");
 
-        GCMUtillityClass iconChanger =  new GCMUtillityClass();
-        iconChanger.iconUpdate(com_id);
+        iconUpdate(com_id);
         populateMessages(com_id);
         //finish();
         //Toast.makeText(getApplicationContext(), com_id + " - " + description, Toast.LENGTH_LONG).show();

@@ -138,8 +138,7 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
         for (int i = 0; i < companyDetails.length; i++) {
             // creating new HashMap
             HashMap<String, String> map = new HashMap<String, String>();
-            Cursor cx = db.getCompCount(companyDetails[i]);
-            String num = String.valueOf(c.getCount());
+            Cursor cx = db.getCompUnreadMessages(companyDetails[i]);
             // adding each child node to HashMap key => value
             map.put(KEY_ID, companyDetails[i]);
             map.put(KEY_TITLE, companyDetails[i]);

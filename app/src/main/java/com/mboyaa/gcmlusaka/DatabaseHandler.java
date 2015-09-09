@@ -157,7 +157,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void deleteContact(Messages contact) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
+                new String[]{String.valueOf(contact.getID())});
         db.close();
     }
 
@@ -192,6 +192,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Getting contacts Count
     public Cursor getCompCount(String com_id) {
         String countQuery = "SELECT * FROM " + TABLE_CONTACTS + " WHERE com_id ='" + com_id + "' ORDER BY " + KEY_MESSAGE_STATUS + " ASC;";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        cursor = db.rawQuery(countQuery, null);
+        // cursor.close();
+
+        // return count
+        return cursor;
+    }
+
+
+    public Cursor getCompUnreadMessages(String com_id) {
+        String countQuery = "SELECT " + KEY_MESSAGE_STATUS + " FROM " + TABLE_CONTACTS + " WHERE com_id ='" + com_id + "' and " + KEY_MESSAGE_STATUS + " = '1'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor;
         cursor = db.rawQuery(countQuery, null);

@@ -1,8 +1,10 @@
 package com.mboyaa.gcmlusaka;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -34,8 +36,7 @@ public class ReaderActivity extends ActionBarActivity {
         com_idx = iA.getStringExtra("com_idx");
         msg = iA.getStringExtra("message");
         String msg_id = iA.getStringExtra("message_id");
-        GCMUtillityClass iconChanger = new GCMUtillityClass();
-        iconChanger.iconUpdate(com_idx);
+        iconUpdate(com_idx);
 
         TextView x = (TextView)findViewById(R.id.textView);
         x.setText(msg);
@@ -43,6 +44,46 @@ public class ReaderActivity extends ActionBarActivity {
         //updateMessageViewed
         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
         db.updateMessageViewed(msg_id);
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void iconUpdate(String name){
+        if (name.equals("ZESCO")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.zesco);
+        } else if (name.equals("ZCAS")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.zcas_logo);
+        } else if (name.equals("UNZA")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.unzalogo);
+        } else if (name.equals("LCC")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.lcc);
+        }else if (name.equals("LWSC")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.lwsc);
+        }else if (name.equals("POLICE")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.police);
+        }else if (name.equals("BONGOHIVE")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.hive);
+        }else if (name.equals("BLOOD BANK")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.znbts);
+        }else if (name.equals("PARLIAMENT")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.zambia);
+        }else if (name.equals("FAZ")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.faz);
+        }else if (name.equals("CBU")) {
+            setTitle(name);
+            getSupportActionBar().setIcon(R.drawable.cbu);
+        }else {
+            getSupportActionBar().setIcon(R.drawable.no_image);
+        }
     }
 
     @Override

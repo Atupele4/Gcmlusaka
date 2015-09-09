@@ -1,15 +1,13 @@
 package com.mboyaa.gcmlusaka;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 
 /**
  * Created by Mboyaa on 09/09/2015.
  */
-public class GCMUtillityClass extends ActionBarActivity {
+public abstract class GCMUtillityClass extends ActionBarActivity {
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    /*@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void iconUpdate(String name){
         if (name.equals("ZESCO")) {
             setTitle(name);
@@ -47,5 +45,5 @@ public class GCMUtillityClass extends ActionBarActivity {
         }else {
             getSupportActionBar().setIcon(R.drawable.no_image);
         }
-    }
+    }*/
 }
