@@ -35,7 +35,7 @@ public class ImageLoader {
     final int def = R.drawable.no_image;
 
     public void DisplayImage(String url, ImageView imageView) {
-     /*   if (url.equals("ZESCO")) {
+        if (url.equals("ZESCO")) {
             imageView.setImageResource(zesco);
         } else if (url.equals("ZCAS")) {
             imageView.setImageResource(zcas);
@@ -57,9 +57,9 @@ public class ImageLoader {
             imageView.setImageResource(faz);
         }else if (url.equals("CBU")) {
             imageView.setImageResource(cbu);
-        }else {*/
+        }else {
             imageView.setImageResource(def);
-//        }
+        }
 
 
       /* imageViews.put(imageView, url);

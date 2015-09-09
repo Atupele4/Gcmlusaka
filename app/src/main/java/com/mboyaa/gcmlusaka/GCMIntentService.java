@@ -96,7 +96,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     /**
      * Issues a notification to inform the user that server has sent a message.
      */
-    private static void generateNotification(Context context, String message, String com_id) {
+    public static void generateNotification(Context context, String message, String com_id) {
         int icon = setNotificationIcon(com_id);
         long when = System.currentTimeMillis();
         NotificationManager notificationManager = (NotificationManager)
@@ -105,12 +105,13 @@ public class GCMIntentService extends GCMBaseIntentService {
         
         String title = context.getString(R.string.app_name);
         
-        Intent notificationIntent = new Intent(context, MyList.class);
+        Intent notificationIntent = new Intent(context, DisplayActivity.class);
+        notificationIntent.putExtra("com_id", com_id);
         // set intent so it does not start a new activity
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                //.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent intent =
-                PendingIntent.getActivity(context, 0, notificationIntent, 0);
+                PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         notification.setLatestEventInfo(context, title, message, intent);
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         

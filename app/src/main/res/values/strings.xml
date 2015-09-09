@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AppNotice</string>
+    <string name="app_name">Alert ME</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Push Notifications</string>
@@ -63,7 +63,7 @@
         <item>FAZ_DESC</item>
     </string-array>
 
-    <string name="title_activity_my_list">MyList</string>
+    <string name="title_activity_my_list">Alert Me</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_display">DisplayActivity</string>
     <string name="title_activity_reader">ReaderActivity</string>

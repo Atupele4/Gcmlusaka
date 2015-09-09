@@ -38,9 +38,21 @@ public class LazyAdapter2 extends BaseAdapter {
     }
     
     public View getView(int position, View convertView, ViewGroup parent) {
-        View vi=convertView;
-        if(convertView==null)
+
+        HashMap<String, String> song;
+        song = data.get(position);
+
+
+        View vi;
+        if(song.get("msg_status").equals("2"))
+        {
+            vi = inflater.inflate(R.layout.list_msg_not_read, null);
+        }else {
             vi = inflater.inflate(R.layout.list_row2, null);
+        }
+
+
+        //
 
         TextView title = (TextView)vi.findViewById(R.id.title); // title
         TextView artist = (TextView)vi.findViewById(R.id.artist); // artist name
@@ -49,10 +61,9 @@ public class LazyAdapter2 extends BaseAdapter {
         TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
 
         
-        HashMap<String, String> song = new HashMap<String, String>();
-        song = data.get(position);
-        
+
         // Setting all values in listview
+        //msg_status
         duration.setText(song.get(CustomizedListView.KEY_DURATION));
         String xc = song.get(CustomizedListView.KEY_ARTIST);
         artist.setText(xc);

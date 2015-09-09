@@ -16,11 +16,12 @@ public class Company_Details_Activity extends ActionBarActivity {
         setContentView(R.layout.company);
 
         Intent iA = getIntent();
-        String name = iA.getStringExtra("com_idx");
+        String Company_ID = iA.getStringExtra("com_idx");
         String description = iA.getStringExtra("description");
         TextView tv =(TextView)findViewById(R.id.com_description);
 
-        iconUpdate(name);
+        GCMUtillityClass x = new GCMUtillityClass();
+        x.iconUpdate(Company_ID);
         tv.setText(description);
 
        // Toast.makeText(getApplicationContext(), com_desc[0], Toast.LENGTH_LONG).show();
@@ -57,60 +58,6 @@ public class Company_Details_Activity extends ActionBarActivity {
     }
 
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    protected String iconUpdate(String name){
-        String[] com_desc = this.getResources().getStringArray(R.array.companies_desc);
-        if (name.equals("ZESCO")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.zesco);
-            return com_desc[0];
-        } else if (name.equals("ZCAS")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.zcas_logo);
-            return com_desc[1];
-        } else if (name.equals("UNZA")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.unzalogo);
-            return com_desc[2];
-        } else if (name.equals("LCC")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.lcc);
-            return com_desc[3];
-        }else if (name.equals("LWSC")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.lwsc);
-            return com_desc[4];
-        }else if (name.equals("POLICE")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.police);
-            return com_desc[5];
-        }else if (name.equals("BONGOHIVE")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.hive);
-            return com_desc[6];
-        }else if (name.equals("BLOOD BANK")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.znbts);
-            return com_desc[7];
-        }else if (name.equals("PARLIAMENT")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.zambia);
-            return com_desc[8];
-        }else if (name.equals("FAZ")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.faz);
-            return com_desc[9];
-        }else if (name.equals("CBU")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.cbu);
-            return com_desc[10];
-        }else {
-            getActionBar().setIcon(R.drawable.no_image);
-            return "";
-        }
-//        return "";
-    }
-
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,4 +84,10 @@ public class Company_Details_Activity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }*/
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

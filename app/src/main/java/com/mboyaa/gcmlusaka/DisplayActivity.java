@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.mboyaa.gcmlusaka.CommonUtilities.displayMessage;
 
 
 public class DisplayActivity extends ActionBarActivity {
@@ -28,6 +31,7 @@ public class DisplayActivity extends ActionBarActivity {
    // static final String KEY_ID = "COM_ID";
    String description;
    String com_id;
+   String com_idxc;
     DatabaseHandler db;
     Cursor cx;
     ListView list;
@@ -38,15 +42,12 @@ public class DisplayActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-
-
         // Getting name, email from intent
         Intent iA = getIntent();
-
         com_id = iA.getStringExtra("com_id");
-        description = iA.getStringExtra("description");
-        iconUpdate(com_id);
-
+       // description = iA.getStringExtra("description");
+        GCMUtillityClass iconChanger = new GCMUtillityClass();
+        iconChanger.iconUpdate(com_id);
         populateMessages(com_id);
 
         // Click event for single list row
@@ -55,24 +56,17 @@ public class DisplayActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
                 //Toast.makeText(getApplicationContext(),tempArray[position],Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(),ReaderActivity.class);
+                Intent i = new Intent(getApplicationContext(), ReaderActivity.class);
                 Intent iA = getIntent();
-
                 String name = iA.getStringExtra("com_id");
-                i.putExtra("com_idx",name);
-                i.putExtra("description",description);
-
-                TextView xc = (TextView)view.findViewById(R.id.hidden);
-                i.putExtra("message",xc.getText());
-
-                TextView nice = (TextView)view.findViewById(R.id.idx);
-                i.putExtra("message_id",nice.getText());
-
-                startActivity(i);
-
-
+                i.putExtra("com_idx", name);
+                i.putExtra("description", description);
+                TextView xc = (TextView) view.findViewById(R.id.hidden);
+                i.putExtra("message", xc.getText());
+                TextView nice = (TextView) view.findViewById(R.id.idx);
+                i.putExtra("message_id", nice.getText());
+                startActivityForResult(i, 1);
             }
         });
 
@@ -92,14 +86,16 @@ public class DisplayActivity extends ActionBarActivity {
                 HashMap<String, String> map = new HashMap<String, String>();
 
                 map.put(KEY_DURATION, cx.getString((cx.getColumnIndex("datetimesent"))));
-                String zx = cx.getString((cx.getColumnIndex("message")));
-                String id = cx.getString((cx.getColumnIndex("_id")));
-                map.put("id",id);
-                map.put("msg",zx);
-                if(zx.length() > 45) {
-                    map.put(KEY_ARTIST, zx.substring(0, 45) + "...");
+                String message = cx.getString((cx.getColumnIndex("message")));
+                String message_id = cx.getString((cx.getColumnIndex("_id")));
+                String msg_status = cx.getString((cx.getColumnIndex("msg_status")));
+                map.put("id",message_id);
+                map.put("msg",message);
+                map.put("msg_status",msg_status);
+                if(message.length() > 45) {
+                    map.put(KEY_ARTIST, message.substring(0, 45) + "...");
                 }else {
-                    map.put(KEY_ARTIST, zx);
+                    map.put(KEY_ARTIST, message);
                 }
 
                 songsList.add(map);
@@ -113,6 +109,14 @@ public class DisplayActivity extends ActionBarActivity {
         list.setAdapter(adapter);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -121,53 +125,14 @@ public class DisplayActivity extends ActionBarActivity {
         Intent iA = getIntent();
 
         com_id = iA.getStringExtra("com_id");
-        description = iA.getStringExtra("description");
+        //description = iA.getStringExtra("description");
 
+        GCMUtillityClass iconChanger =  new GCMUtillityClass();
+        iconChanger.iconUpdate(com_id);
         populateMessages(com_id);
         //finish();
         //Toast.makeText(getApplicationContext(), com_id + " - " + description, Toast.LENGTH_LONG).show();
     }
-
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    protected void iconUpdate(String name){
-        if (name.equals("ZESCO")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.zesco);
-        } else if (name.equals("ZCAS")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.zcas_logo);
-        } else if (name.equals("UNZA")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.unzalogo);
-        } else if (name.equals("LCC")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.lcc);
-        }else if (name.equals("LWSC")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.lwsc);
-        }else if (name.equals("POLICE")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.police);
-        }else if (name.equals("BONGOHIVE")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.hive);
-        }else if (name.equals("BLOOD BANK")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.znbts);
-        }else if (name.equals("PARLIAMENT")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.zambia);
-        }else if (name.equals("FAZ")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.faz);
-        }else if (name.equals("CBU")) {
-            setTitle(name);
-            getActionBar().setIcon(R.drawable.cbu);
-        }else {
-            getActionBar().setIcon(R.drawable.no_image);
-        }
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -185,22 +150,29 @@ public class DisplayActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
 
         switch (item.getItemId()) {
-            case R.id.action_searchx:
+            case R.id.action_settings:
                 //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(),Company_Details_Activity.class);
                 Intent iA = getIntent();
                 String name = iA.getStringExtra("com_id");
                 i.putExtra("com_idx",name);
                 i.putExtra("description",description);
-                startActivity(i);
+                startActivityForResult(i,2);
                 return true;
-            case R.id.action_settings:
+            case R.id.action_searchx:
 
+                DatabaseHandler db = new DatabaseHandler(this);
+
+                db.saveMessage(new Messages(com_id, "Alert 24hrs 3000", "12/09/2015"));
+
+                displayMessage(this, "Alert 24hrs");
+                // notifies user
+                GCMIntentService.generateNotification(this, "Alert 24", com_id);
+
+                Toast.makeText(this,"Company ID "+com_id,Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

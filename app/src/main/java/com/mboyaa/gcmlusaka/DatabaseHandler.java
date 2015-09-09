@@ -27,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_ID = "_id";
     public static final String KEY_COM_ID = "com_id";
     public static final String KEY_MESSAGE = "message";
+    public static final String KEY_MESSAGE_STATUS = "msg_status";
     public static final String KEY_DATETIME = "datetimesent";
 
 
@@ -37,6 +38,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + KEY_ID + " INTEGER PRIMARY KEY,"
             + KEY_COM_ID + " TEXT,"
             + KEY_MESSAGE + " TEXT,"
+            + KEY_MESSAGE_STATUS + " TEXT,"
             + KEY_DATETIME + " DATETIME" + ")";
     
    // Todo table create statement
@@ -90,6 +92,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_COM_ID, contact.get_com_id()); // Contact Name
         values.put(KEY_MESSAGE, contact.get_message()); // Contact Phone
         values.put(KEY_DATETIME, contact.get_dateTime()); // Contact Phone
+        values.put(KEY_MESSAGE_STATUS, "1"); // Contact Phone
 
         // Inserting Row
         db.insert(TABLE_CONTACTS, null, values);
@@ -139,18 +142,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor;
     }
 
-/*    // Updating single contact
-    public int updateContact(Contact contact) {
+    // Updating single contact
+    public int updateMessageViewed(String msgID) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
+        values.put(KEY_MESSAGE_STATUS, 2);
 
         // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
-    }*/
+        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ? ",
+                new String[] { String.valueOf(msgID) });
+    }
 
     // Deleting single contact
     public void deleteContact(Messages contact) {
@@ -190,10 +191,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Getting contacts Count
     public Cursor getCompCount(String com_id) {
-        String countQuery = "SELECT * FROM " + TABLE_CONTACTS + " WHERE com_id ='" + com_id + "'  ORDER BY datetimesent DESC;";
+        String countQuery = "SELECT * FROM " + TABLE_CONTACTS + " WHERE com_id ='" + com_id + "' ORDER BY " + KEY_MESSAGE_STATUS + " ASC;";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-       // cursor.close();
+        Cursor cursor;
+        cursor = db.rawQuery(countQuery, null);
+        // cursor.close();
 
         // return count
         return cursor;
