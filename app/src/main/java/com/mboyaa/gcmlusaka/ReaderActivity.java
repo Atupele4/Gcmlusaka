@@ -10,21 +10,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class ReaderActivity extends ActionBarActivity {
 
-
-    ListView list;
-    LazyAdapter2 adapter;
-
-    static final String KEY_ARTIST = "artist";
-    static final String KEY_DURATION = "duration";
-    String com_idx;
-    String msg;
-    String message_id;
+    private String com_idx;
+    private String msg;
+    private String message_id;
 
 
     @Override
@@ -47,7 +40,7 @@ public class ReaderActivity extends ActionBarActivity {
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public void iconUpdate(String name){
+    private void iconUpdate(String name){
         if (name.equals("ZESCO")) {
             setTitle(name);
             getSupportActionBar().setIcon(R.drawable.zesco);

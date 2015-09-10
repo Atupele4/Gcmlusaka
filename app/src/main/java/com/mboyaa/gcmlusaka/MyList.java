@@ -23,29 +23,23 @@ import java.util.HashMap;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class MyList extends ActionBarActivity implements ActionBar.OnNavigationListener {
 
-    static final String KEY_SONG = "song"; // parent node
-    static final String KEY_ID = "id";
-    static final String KEY_TITLE = "title";
-    static final String KEY_ARTIST = "artist";
-    static final String KEY_DURATION = "duration";
-    static final String KEY_THUMB_URL = "thumb_url";
+    private static final String KEY_ID = "id";
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_ARTIST = "artist";
+    private static final String KEY_DURATION = "duration";
+    private static final String KEY_THUMB_URL = "thumb_url";
 
-    ListView list;
-    LazyAdapter adapter;
+    private ListView list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-
-        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-
-        ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
-
         final String[] tempArray = this.getResources().getStringArray(R.array.companies);
         final String[] com_desc = this.getResources().getStringArray(R.array.companies_desc);
 
-        //update listview UI;
+        //update list view UI;
         UpdateListView();
 
         // Click event for single list row
@@ -66,7 +60,7 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
     @Override
     protected void onResume() {
         super.onResume();
-        //update listview UI
+        //update list view UI
         UpdateListView();
     }
 
@@ -133,8 +127,7 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
         ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
         final String[] companyDetails = this.getResources().getStringArray(R.array.companies);
-        final String[] company_discription = this.getResources().getStringArray(R.array.companies_desc);
-        Cursor c = db.getAllContacts();
+        final String[] company_description = this.getResources().getStringArray(R.array.companies_desc);
         for (int i = 0; i < companyDetails.length; i++) {
             // creating new HashMap
             HashMap<String, String> map = new HashMap<String, String>();
@@ -142,7 +135,7 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
             // adding each child node to HashMap key => value
             map.put(KEY_ID, companyDetails[i]);
             map.put(KEY_TITLE, companyDetails[i]);
-            map.put(KEY_ARTIST, company_discription[i]);
+            map.put(KEY_ARTIST, company_description[i]);
             map.put(KEY_DURATION, String.valueOf(cx.getCount()));
             map.put(KEY_THUMB_URL, companyDetails[i]);
 
@@ -153,7 +146,7 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
         list=(ListView)findViewById(R.id.list);
 
         // Getting adapter by passing xml data ArrayList
-        adapter=new LazyAdapter(this, songsList);
+        LazyAdapter adapter = new LazyAdapter(this, songsList);
         list.setAdapter(adapter);
     }
 }

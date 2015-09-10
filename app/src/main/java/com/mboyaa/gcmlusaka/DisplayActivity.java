@@ -22,19 +22,13 @@ import static com.mboyaa.gcmlusaka.CommonUtilities.displayMessage;
 
 public class DisplayActivity extends ActionBarActivity {
 
-    static final String KEY_SONG = "song"; // parent node
-    static final String KEY_ID = "id";
 
-    static final String KEY_ARTIST = "artist";
-    static final String KEY_DURATION = "duration";
+    private static final String KEY_ARTIST = "artist";
+    private static final String KEY_DURATION = "duration";
    // static final String KEY_ID = "COM_ID";
-   String description;
-   String com_id;
-   String com_idxc;
-    DatabaseHandler db;
-    Cursor cx;
-    ListView list;
-    LazyAdapter2 adapter;
+    private String description;
+    private String com_id;
+    private ListView list;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -71,7 +65,7 @@ public class DisplayActivity extends ActionBarActivity {
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public void iconUpdate(String name){
+    private void iconUpdate(String name){
         if (name.equals("ZESCO")) {
             setTitle(name);
             getSupportActionBar().setIcon(R.drawable.zesco);
@@ -110,12 +104,12 @@ public class DisplayActivity extends ActionBarActivity {
         }
     }
 
-    public void populateMessages(String com_id){
-        db = new DatabaseHandler(getApplicationContext());
+    private void populateMessages(String com_id){
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
         ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
-        cx = db.getCompCount(com_id);
+        Cursor cx = db.getCompCount(com_id);
 
         // final String[] tempArray = this.getResources().getStringArray(R.array.companies);
         if (cx.moveToFirst()){
@@ -142,16 +136,8 @@ public class DisplayActivity extends ActionBarActivity {
         //cx.close();
         list=(ListView)findViewById(R.id.listz);
         // Getting adapter by passing xml data ArrayList
-        adapter=new LazyAdapter2(this, songsList);
+        LazyAdapter2 adapter = new LazyAdapter2(this, songsList);
         list.setAdapter(adapter);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-
     }
 
     @Override
