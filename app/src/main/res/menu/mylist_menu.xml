@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
-
+<group
+    android:id="@+id/all">
     <!-- Search, should appear as action button -->
     <item android:id="@+id/clearAllNotifications"
         android:icon="@drawable/delete"
         android:title="Clear"
-        yourapp:showAsAction="ifRoom" />
+        yourapp:showAsAction="" />
+  <item android:id="@+id/two"
+        android:icon="@drawable/delete"
+        android:title="Clear"
+        yourapp:showAsAction="collapseActionView" />
+  <item android:id="@+id/three"
+        android:icon="@drawable/delete"
+        android:title="Clear"
+        yourapp:showAsAction="collapseActionView" />
 
-
+</group>
 </menu>

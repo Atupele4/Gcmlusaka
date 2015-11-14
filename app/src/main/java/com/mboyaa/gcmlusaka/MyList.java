@@ -9,11 +9,13 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,12 +31,13 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
     private static final String KEY_DURATION = "duration";
     private static final String KEY_THUMB_URL = "thumb_url";
 
-    private ListView list;
+    private GridView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
 
         final String[] tempArray = this.getResources().getStringArray(R.array.companies);
         final String[] com_desc = this.getResources().getStringArray(R.array.companies_desc);
@@ -115,6 +118,13 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
         }
     }
 
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.mylist_menu, popup.getMenu());
+        popup.show();
+    }
+
     @Override
     public boolean onNavigationItemSelected(int itemPosition, long itemId) {
         return false;
@@ -122,7 +132,9 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
 
     private void UpdateListView()
     {
-        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+       // DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+
+
 
         ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
@@ -131,19 +143,19 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
         for (int i = 0; i < companyDetails.length; i++) {
             // creating new HashMap
             HashMap<String, String> map = new HashMap<String, String>();
-            Cursor cx = db.getCompUnreadMessages(companyDetails[i]);
+            //Cursor cx = db.getCompUnreadMessages(companyDetails[i]);
             // adding each child node to HashMap key => value
             map.put(KEY_ID, companyDetails[i]);
             map.put(KEY_TITLE, companyDetails[i]);
             map.put(KEY_ARTIST, company_description[i]);
-            map.put(KEY_DURATION, String.valueOf(cx.getCount()));
+            //map.put(KEY_DURATION, String.valueOf(cx.getCount()));
             map.put(KEY_THUMB_URL, companyDetails[i]);
 
             //adding HashList to ArrayList
             songsList.add(map);
         }
 
-        list=(ListView)findViewById(R.id.list);
+        list=(GridView)findViewById(R.id.list);
 
         // Getting adapter by passing xml data ArrayList
         LazyAdapter adapter = new LazyAdapter(this, songsList);

@@ -32,7 +32,7 @@
         android:textColor="#343434"
         android:textSize="16dip"
         android:layout_marginTop="1dip"
-        android:text="After he left the country." />
+        android:text="Message Comes Here." />
 
     <TextView
         android:layout_width="wrap_content"

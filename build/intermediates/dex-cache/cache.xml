@@ -2,60 +2,53 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\classes-965887bfe27b01c7e6b7b7ea56abd79c9af947c5.jar" />
-    </item>
-    <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-8dd3374088fcde81d0a87ca6dc680e6f2b5f6fc8.jar" />
-    </item>
-    <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\libs\gcm.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="a6d7bce795a14c7f86111756c4ceb44b79de14aa">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\gcm-461dddd14f00af03507871225aef47bc4af400c0.jar" />
-    </item>
-    <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\libs\actionbarsherlock-i18n-4.3.0-sources.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="1c99736025ddd2e04b719b324e2aeb8190e7164e">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\actionbarsherlock-i18n-4.3.0-sources-c4c1efe45ebfed0bb4e5f1b1a62ebf8d27852072.jar" />
-    </item>
-    <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jar="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="8694693636ab36910c8100ce527c258ff3ebece0">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\classes-1eab82e415917b8d144095cf7d8880b1f6b388fd.jar" />
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\classes-20a0e5c28aff6c8403c09f6e1375751b767ebd24.jar" />
     </item>
     <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.1.71\classes.jar"
+        jar="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\jars\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="0f6d5c1ef2e982c3b7858408e3df389cf5d202da">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\classes-a1531c3e0bf80b9950ca7bd8b9d9fd2f88180505.jar" />
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\classes-73d6f1f4516b5494ee773614dda89c3873b72a5c.jar" />
     </item>
     <item
-        jar="D:\android-sdk\android-sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jar="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-142a3af21d757947a84bb30f1539c551d38e8200.jar" />
+    </item>
+    <item
+        jar="C:\Android\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-83af1156e172459dbc59714690f6d4ab1dc5d562.jar" />
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-d1af41b090795af4329ce58891bb05d70e93fd0f.jar" />
     </item>
     <item
-        jar="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\libs\jdom-2.0.5.jar"
+        jar="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\libs\gcm.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a6d7bce795a14c7f86111756c4ceb44b79de14aa">
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\gcm-b4539b8d8c6c76d31cc2cee8ee9e09385d42e113.jar" />
+    </item>
+    <item
+        jar="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.1.71\jars\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="0f6d5c1ef2e982c3b7858408e3df389cf5d202da">
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\classes-f9535c3412584e89ac31fc787e2cb544f78c91cd.jar" />
+    </item>
+    <item
+        jar="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\libs\jdom-2.0.5.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="2001db51c131e555bafdb77fc52af6a9408c505e">
-        <dex dex="C:\Users\Mboyaa\AndroidStudioProjects\workks\Gcmlusaka\Gcmlusaka\app\build\intermediates\pre-dexed\debug\jdom-2.0.5-a331d51ff291cd3a5cf82b41ef239457cdba78e0.jar" />
+        <dex dex="C:\Users\mboyaa\AndroidStudioProjects\Gcmlusaka\app\build\intermediates\pre-dexed\debug\jdom-2.0.5-f72cd1822303469747c0a802709132b1c621299a.jar" />
     </item>
 
 </items>
