@@ -31,6 +31,8 @@ public class GCMIntentService extends GCMBaseIntentService {
         ServerUtilities.register(context, MainActivity.name, MainActivity.email, registrationId);
     }
 
+
+
     /**
      * Method called on device un registred
      * */

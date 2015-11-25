@@ -36,9 +36,13 @@
         android:textSize="15dip"
         android:textStyle="bold"/>
 
+
+
+
+
     <!-- Artist Name -->
-    <TextView
-        android:id="@+id/company_description"
+<!--    <TextView
+        android:id="@+id/artist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
@@ -46,7 +50,34 @@
         android:textSize="10dip"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Just gona stand there and ..." />
+        android:text="Just gona stand there and ..." />-->
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notify Me"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:id="@+id/checkBox"
+        android:textColor="@android:color/black" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Follow"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@+id/checkBox"
+        android:id="@+id/checkBox2"
+        android:textColor="@android:color/black" />
+
+<!--    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New CheckBox"
+        android:layout_below="@id/title"
+        android:id="@+id/checkBox2"
+        android:layout_alignBottom="@+id/thumbnail"
+        android:layout_toRightOf="@+id/checkBox"/>-->
 
     <!-- Rightend Duration -->
     <TextView
@@ -61,6 +92,7 @@
         android:textSize="10dip"
         android:textColor="#10bcc9"
         android:textStyle="bold"/>
+
 
 
 

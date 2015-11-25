@@ -67,5 +67,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_display">DisplayActivity</string>
     <string name="title_activity_reader">ReaderActivity</string>
+    <string name="title_activity_notification_selector">Notification Selector</string>
 
 </resources>

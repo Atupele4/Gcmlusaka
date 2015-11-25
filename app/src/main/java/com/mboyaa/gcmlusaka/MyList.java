@@ -38,6 +38,7 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+       // actionBar = getSupportActionBar();
 
         final String[] tempArray = this.getResources().getStringArray(R.array.companies);
         final String[] com_desc = this.getResources().getStringArray(R.array.companies_desc);
@@ -53,8 +54,8 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
                                     int position, long id) {
                 //Toast.makeText(getApplicationContext(),tempArray[position],Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), DisplayActivity.class);
-                i.putExtra("com_id", tempArray[position]);
-                i.putExtra("description", com_desc[position]);
+                i.putExtra(DatabaseHandler.KEY_COM_ID, tempArray[position]);
+                i.putExtra(DatabaseHandler.KEY_COMPANY_DESCRIPTION, com_desc[position]);
                 startActivity(i);
             }
         });
@@ -109,7 +110,10 @@ public class MyList extends ActionBarActivity implements ActionBar.OnNavigationL
                 // Showing Alert Message
                 alertDialog.show();
                 return true;
-
+            case R.id.selector:
+                Intent i = new Intent(getApplicationContext(), NotificationSelector.class);
+                startActivity(i);
+                return true;
             case R.id.action_settings:
                 Toast.makeText(getApplicationContext(),"2",Toast.LENGTH_SHORT).show();
                 return true;

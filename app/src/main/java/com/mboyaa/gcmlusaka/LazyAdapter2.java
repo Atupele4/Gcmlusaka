@@ -51,7 +51,7 @@ public class LazyAdapter2 extends BaseAdapter {
             vi = inflater.inflate(R.layout.list_row2, null);
         }
 
-        TextView artist = (TextView)vi.findViewById(R.id.artist); // artist name
+        TextView artist = (TextView)vi.findViewById(R.id.company_description); // artist name
         TextView msg = (TextView)vi.findViewById(R.id.hidden); // hidden message
         TextView idx = (TextView)vi.findViewById(R.id.idx); // get hidden message id
         TextView duration = (TextView)vi.findViewById(R.id.duration); // duration

@@ -7,7 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.members.systems.CompanyDetails;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -21,16 +24,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Contacts table name
     private static final String TABLE_CONTACTS = "notify";
+    private static final String TABLE_COMPANY = "CompanyTable";
     private static final String TABLE_FOLLOW = "FollowTable";
 
     // Contacts Table Columns names
-    public static final String KEY_ID = "_id";
-    public static final String KEY_COM_ID = "com_id";
-    public static final String KEY_MESSAGE = "message";
-    public static final String KEY_MESSAGE_STATUS = "msg_status";
-    public static final String KEY_DATETIME = "datetimesent";
-
-
+    public static final String KEY_ID = "ID";
+    public static final String KEY_COM_ID = "Comp_ID";
+    public static final String KEY_COMPANY_ID = "Comp_ID";
+    public static final String KEY_COMPANY_NAME = "Comp_Name";
+    public static final String KEY_COMPANY_DESCRIPTION = "Comp_Description";
+    public static final String KEY_COMPANY_IMAGE = "Comp_Image";
+    public static final String KEY_MESSAGE = "Message";
+    public static final String KEY_MESSAGE_STATUS = "Msg_Status";
+    public static final String KEY_DATETIME = "DateTimeSent";
+    public static final String KEY_COMPANY_DATE_ADDED = "DateTimeAdded";
 
     // Table Create Statements
     // Todo table create statement
@@ -54,19 +61,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + KEY_MESSAGE + " TEXT,"
             + KEY_DATETIME + " DATETIME" + ")";
 
+    // Todo table create statement
+    private static final  String CREATE_COMP_FOLLOW_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
+            + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_COM_ID + " TEXT,"
+            + KEY_MESSAGE + " TEXT,"
+            + KEY_DATETIME + " DATETIME" + ")";
 
-    
+    // Todo table create statement
+    private static final  String COMPANYS_TABLE = "CREATE TABLE " + TABLE_COMPANY + " ("
+            + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_COMPANY_ID + " TEXT,"
+            + KEY_COMPANY_DESCRIPTION + " TEXT,"
+            + KEY_COMPANY_IMAGE + " TEXT,"
+            + KEY_COMPANY_DATE_ADDED + " DATETIME" + ")";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    public SQLiteDatabase SqlDB;
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-       
         db.execSQL(CREATE_MSGS_TABLE);
         db.execSQL(CREATE_FOLLOWS_TABLE);
+        db.execSQL(COMPANYS_TABLE);
     }
 
     // Upgrading database
@@ -75,9 +95,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOLLOW);
+        db.execSQL("DROP TABLE IF EXISTS " + COMPANYS_TABLE);
 
         // Create tables again
         onCreate(db);
+
+
+        CompanyDetails comp = new CompanyDetails();
+        this.InsertCompanyToDB(comp, true);
     }
 
     /**
@@ -99,8 +124,66 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-   /* // Getting single contact
-    Contact getContact(int id) {
+
+    // Insert Default Company List into Company Table
+   public void InsertCompanyToDB(CompanyDetails companyDetails,boolean flag) {
+       SqlDB = this.getWritableDatabase();
+       if(flag){
+           List<String> companyNames = new ArrayList<String>();
+
+           companyNames.add("ZCAS");
+           companyNames.add("POLICE");
+           companyNames.add("ZRA");
+           companyNames.add("LWSC");
+           companyNames.add("LCC");
+           companyNames.add("UNZA");
+           companyNames.add("FAZ");
+           companyNames.add("BONGOHIVE");
+           companyNames.add("CBU");
+
+           for (int i = 0; i <= companyNames.size(); i++ ){
+
+              ContentValues values = new ContentValues();
+               try{
+                  values.put(KEY_COMPANY_ID, companyNames.get(i));
+                  values.put(KEY_COMPANY_NAME, companyNames.get(i));
+                  values.put(KEY_COMPANY_IMAGE, companyNames.get(i));
+                  values.put(KEY_COMPANY_DATE_ADDED, System.currentTimeMillis());
+              }catch (Exception x){
+              }
+              SqlDB.insert(COMPANYS_TABLE, null, values);
+           }
+       }
+
+//        SqlDB.close(); // Closing database connection
+    }
+
+
+    public List<CompanyDetails> getAllCompanies() {
+        List<CompanyDetails> companyDetails_ = new ArrayList<CompanyDetails>();
+        String Query = "SELECT * FROM " + TABLE_COMPANY +";";
+        SqlDB = this.getReadableDatabase();
+        Cursor cursor = SqlDB.rawQuery(Query, null);
+        if (cursor != null)
+
+
+                do {
+                    CompanyDetails companyDetails = new CompanyDetails();
+                    companyDetails.SetCompanyID(cursor.getString(1));
+                    companyDetails.SetCompanyName((cursor.getString(cursor.getColumnIndex(KEY_COMPANY_NAME))));
+                    companyDetails.SetCompanyImageID(cursor.getString(cursor.getColumnIndex(KEY_COMPANY_IMAGE)));
+
+                    // adding to todo list
+                    companyDetails_.add(companyDetails);
+                } while (cursor.moveToNext());
+
+
+
+        return companyDetails_;
+    }
+
+/*    // Getting single contact
+    CompanyDetails getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
@@ -137,7 +220,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
             //return cursor;
         }
-
         // return contact list
         return cursor;
     }
@@ -190,8 +272,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting contacts Count
-    public Cursor getCompCount(String com_id) {
-        String countQuery = "SELECT * FROM " + TABLE_CONTACTS + " WHERE com_id ='" + com_id + "' ORDER BY " + KEY_MESSAGE_STATUS + " ASC;";
+    public Cursor getCompCount(String CompanyID) {
+        String countQuery = "SELECT * FROM " + TABLE_CONTACTS + " WHERE "+KEY_COM_ID + " ='" + CompanyID + "' ORDER BY " + KEY_MESSAGE_STATUS + " ASC;";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor;
         cursor = db.rawQuery(countQuery, null);

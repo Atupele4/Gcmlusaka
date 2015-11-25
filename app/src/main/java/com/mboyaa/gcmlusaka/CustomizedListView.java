@@ -19,12 +19,25 @@ public class CustomizedListView extends Activity {
 	static final String URL = "http://api.androidhive.info/music/music.xml";
 	// XML node keys
 	static final String KEY_SONG = "song"; // parent node
-	static final String KEY_ID = "id";
 	static final String KEY_TITLE = "title";
 	static final String KEY_ARTIST = "artist";
 	static final String KEY_DURATION = "duration";
 	static final String KEY_THUMB_URL = "thumb_url";
 	static final String KEY_MSG = "msg";
+	static final String KEY_COMPNAME = "compName";
+
+	public static final String KEY_ID = "ID";
+	public static final String KEY_COM_ID = "Comp_ID";
+	public static final String KEY_COMPANY_ID = "Comp_ID";
+	public static final String KEY_COMPANY_NAME = "Comp_Name";
+	public static final String KEY_COMPANY_DESCRIPTION = "Comp_Description";
+	public static final String KEY_COMPANY_IMAGE = "Comp_Image";
+	public static final String KEY_MESSAGE = "Message";
+	public static final String KEY_MESSAGE_STATUS = "Msg_Status";
+	public static final String KEY_DATETIME = "DateTimeSent";
+	public static final String KEY_COMPANY_DATE_ADDED = "DateTimeAdded";
+
+
 
 	
 	ListView list;

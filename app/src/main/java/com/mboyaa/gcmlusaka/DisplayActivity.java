@@ -25,8 +25,6 @@ public class DisplayActivity extends ActionBarActivity {
 
     private static final String KEY_ARTIST = "artist";
     private static final String KEY_DURATION = "duration";
-   // static final String KEY_ID = "COM_ID";
-    private String description;
     private String com_id;
     private ListView list;
 
@@ -37,7 +35,7 @@ public class DisplayActivity extends ActionBarActivity {
         setContentView(R.layout.activity_display);
         // Getting name, email from intent
         Intent iA = getIntent();
-        com_id = iA.getStringExtra("com_id");
+        com_id = iA.getStringExtra(DatabaseHandler.KEY_COM_ID);
        // description = iA.getStringExtra("description");
         iconUpdate(com_id);
         populateMessages(com_id);
@@ -51,9 +49,8 @@ public class DisplayActivity extends ActionBarActivity {
                 //Toast.makeText(getApplicationContext(),tempArray[position],Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), ReaderActivity.class);
                 Intent iA = getIntent();
-                String name = iA.getStringExtra("com_id");
+                String name = iA.getStringExtra(DatabaseHandler.KEY_COM_ID);
                 i.putExtra("com_idx", name);
-                i.putExtra("description", description);
                 TextView xc = (TextView) view.findViewById(R.id.hidden);
                 i.putExtra("message", xc.getText());
                 TextView nice = (TextView) view.findViewById(R.id.idx);
@@ -116,10 +113,10 @@ public class DisplayActivity extends ActionBarActivity {
             do{
                 HashMap<String, String> map = new HashMap<String, String>();
 
-                map.put(KEY_DURATION, cx.getString((cx.getColumnIndex("datetimesent"))));
-                String message = cx.getString((cx.getColumnIndex("message")));
-                String message_id = cx.getString((cx.getColumnIndex("_id")));
-                String msg_status = cx.getString((cx.getColumnIndex("msg_status")));
+                map.put(KEY_DURATION, cx.getString((cx.getColumnIndex(DatabaseHandler.KEY_DATETIME))));
+                String message = cx.getString((cx.getColumnIndex(DatabaseHandler.KEY_MESSAGE)));
+                String message_id = cx.getString((cx.getColumnIndex(DatabaseHandler.KEY_ID)));
+                String msg_status = cx.getString((cx.getColumnIndex(DatabaseHandler.KEY_MESSAGE_STATUS)));
                 map.put("id",message_id);
                 map.put("msg",message);
                 map.put("msg_status",msg_status);
@@ -147,7 +144,7 @@ public class DisplayActivity extends ActionBarActivity {
         // Getting name, email from intent
         Intent iA = getIntent();
 
-        com_id = iA.getStringExtra("com_id");
+        com_id = iA.getStringExtra(DatabaseHandler.KEY_COM_ID);
         //description = iA.getStringExtra("description");
 
         iconUpdate(com_id);
@@ -159,7 +156,6 @@ public class DisplayActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_actions, menu);
         return super.onCreateOptionsMenu(menu);
@@ -176,9 +172,8 @@ public class DisplayActivity extends ActionBarActivity {
                 //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(),Company_Details_Activity.class);
                 Intent iA = getIntent();
-                String name = iA.getStringExtra("com_id");
+                String name = iA.getStringExtra(DatabaseHandler.KEY_COM_ID);
                 i.putExtra("com_idx",name);
-                i.putExtra("description",description);
                 startActivityForResult(i,2);
                 return true;
             case R.id.action_searchx:

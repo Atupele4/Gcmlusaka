@@ -31,8 +31,9 @@
 
     <!-- Permission to vibrate -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Main activity. -->
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Main activity. -->
     <application
         android:icon="@drawable/briefcase"
         android:label="@string/app_name" >
@@ -42,7 +43,6 @@
             android:name=".MyList"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -92,6 +92,11 @@
         <activity
             android:name=".ReaderActivity"
             android:label="@string/title_activity_reader"
+            android:theme="@style/Theme.AppCompat" >
+        </activity>
+        <activity
+            android:name=".NotificationSelector"
+            android:label="@string/title_activity_notification_selector"
             android:theme="@style/Theme.AppCompat" >
         </activity>
     </application>

@@ -7,15 +7,15 @@
     <item android:id="@+id/clearAllNotifications"
         android:icon="@drawable/delete"
         android:title="Clear"
-        yourapp:showAsAction="" />
-  <item android:id="@+id/two"
-        android:icon="@drawable/delete"
-        android:title="Clear"
-        yourapp:showAsAction="collapseActionView" />
+        yourapp:showAsAction="always" />
+  <item android:id="@+id/selector"
+        android:icon="@drawable/abc_ic_menu_moreoverflow_normal_holo_dark"
+        android:title="Select Notifications"
+        yourapp:showAsAction="always" />
   <item android:id="@+id/three"
         android:icon="@drawable/delete"
         android:title="Clear"
-        yourapp:showAsAction="collapseActionView" />
+        yourapp:showAsAction="always" />
 
 </group>
 </menu>
