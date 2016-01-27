@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +63,6 @@ public class loadNotificationComps extends BaseAdapter implements CompoundButton
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//        Toast.makeText(this,"PIP",Toast.LENGTH_LONG).show();
+        Toast.makeText(activity,"PIP", Toast.LENGTH_LONG).show();
     }
 }

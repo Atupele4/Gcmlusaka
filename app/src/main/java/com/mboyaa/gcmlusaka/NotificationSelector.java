@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -57,12 +58,6 @@ public class NotificationSelector extends Activity {
         loadNotificationComps adapter = new loadNotificationComps(this, songsList);
         list.setAdapter(adapter);
 
-/*        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });*/
 
         // Click event for single list row
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -70,7 +65,19 @@ public class NotificationSelector extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getApplicationContext(), "Position : "+position + " ;", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"LOL",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), DisplayActivity.class);
+                startActivity(i);
+            }
+        });
+
+        // Click event for single list row
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(), "Position : " + position + " ;", Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getApplicationContext(), ReaderActivity.class);
                 Intent iA = getIntent();
@@ -84,6 +91,26 @@ public class NotificationSelector extends Activity {
             }
         });
 
+    }
+
+
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.checkBox1:
+               Toast.makeText(getApplicationContext(),"ONE",Toast.LENGTH_LONG).show();
+                // Remove the meat
+                break;
+            case R.id.checkBox2:
+                Toast.makeText(getApplicationContext(),"TWO",Toast.LENGTH_LONG).show();
+                // I'm lactose intolerant
+                break;
+            // TODO: Veggie sandwich
+        }
     }
 
 
